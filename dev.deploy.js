@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const OSS = require("ali-oss");
-const fs = require("fs");
+import OSS from "ali-oss";
+import fs from "fs";
 const readDir = (path) => {
   let arr = [];
   let temp = fs.readdirSync(path);
