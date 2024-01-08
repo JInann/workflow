@@ -21,7 +21,7 @@ let client = new OSS({
 
 client.useBucket("jyb-site");
 readDir("./pre").forEach((file) => {
-  client.put("workflow/" + file.split("./dist/")[1], file).then(() => {
+  client.put("workflow/" + file.split("./pre/")[1], file).then(() => {
     console.log("上传成功:", file);
   });
 });
