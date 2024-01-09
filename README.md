@@ -107,10 +107,10 @@
          - uses: actions/checkout@v3 # 切出代码
            with:
              fetch-depth: 2
-         - name: Use Node.js 16.x # 使用nodejs
+         - name: Use Node.js 18.x # 使用nodejs
            uses: actions/setup-node@v3
            with:
-             node-version: 16.x # node 16.x
+             node-version: 18.x # node 18.x
          - run: npm install # 安装依赖
          - run: npm run pre --if-present # 打包
          - name: upload dist # 上传打包后的文件
