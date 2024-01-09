@@ -1,8 +1,6 @@
-配置github工作流
+#### 1. 创建一个GitHub仓库，或者使用现有的都可以
 
-1. GitHub创建仓库
-
-2. 创建GitHub工作流文件
+#### 2. 创建GitHub工作流文件
 
    github的工作流文件保存在：.github/workflows/*.yml。
 
@@ -58,10 +56,10 @@
             - uses: actions/checkout@v3 # 切出代码
               with:
                 fetch-depth: 2
-            - name: Use Node.js 16.x # 使用nodejs
+            - name: Use Node.js 18.x # 使用nodejs
               uses: actions/setup-node@v3
               with:
-                node-version: 16.x # node 16.x
+                node-version: 18.x # node 16.x
             - run: npm install # 安装依赖
             - run: npm run pre --if-present # 打包
             - run: node dev.deploy # 上传打包后的文件
@@ -75,10 +73,10 @@
          	# ...
           steps: # 步骤
             # ...
-            - name: Use Node.js 16.x # 使用nodejs
+            - name: Use Node.js 18.x # 使用nodejs
               uses: actions/setup-node@v3 
               with:
-                node-version: 16.x # node 16.x
+                node-version: 18.x # 指定node版本 18.x
             - run: npm install # 安装依赖
             - run: npm run pre --if-present # 打包
             - name: upload dist # 上传打包后的文件
@@ -123,7 +121,7 @@
    
    ```
 
-3. 创建完工作流文件后，需要开发上传文件脚本及配置相关环境变量。
+#### 3. 创建完工作流文件后，需要开发上传文件脚本及配置相关环境变量。
 
    1. 以阿里云oss为例，新建一个bucket，已有可跳过，其他oss服务器配置思路一样。
 
@@ -159,12 +157,14 @@
 
       ->Deployment branches and tags配置发布环境关联的分支或tag
 
-      ->Environment secrets中新增ACCESSKEYID、ACCESSKEYSECRET
+      ->Environment secrets中新增**ACCESSKEYID、ACCESSKEYSECRET**
+      
+      可创建多个环境，对应测试环境、生产环境等
 
    3. 阿里云上传oss脚本
 
        ```typescript
-      // dev.deploy.js
+      // deploy.js
       import OSS from "ali-oss";
       import fs from "fs";
       const readDir = (path) => {
@@ -196,3 +196,6 @@
       });
          
       ```
+      
+>  附Github地址：[https://github.com/JInann/workflow](https://github.com/JInann/workflow)<br/>
+>  Github workflow文档 [https://docs.github.com/zh/actions/using-workflows](https://docs.github.com/zh/actions/using-workflows)
