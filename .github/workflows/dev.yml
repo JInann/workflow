@@ -6,9 +6,8 @@ on:
     
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
       - uses: actions/checkout@v3
         with:
@@ -21,4 +20,8 @@ jobs:
       - run: npm run pre --if-present
       - name: upload dist
         env:
-        run: node dev.deploy
+          ACCESSKEYID: ${{secrets.ACCESSKEYID}}
+          ACCESSKEYSECRET: ${{secrets.ACCESSKEYSECRET}}
+          BUILD_DIR: pre
+          TARGET_DIR: workflow_dev
+        run: node deploy
