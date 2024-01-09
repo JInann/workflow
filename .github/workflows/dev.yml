@@ -22,4 +22,6 @@ jobs:
         env:
           ACCESSKEYID: ${{secrets.ACCESSKEYID}}
           ACCESSKEYSECRET: ${{secrets.ACCESSKEYSECRET}}
-        run: node dev.deploy
+          BUILD_DIR: pre
+          TARGET_DIR: workflow_dev
+        run: node deploy
